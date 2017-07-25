@@ -1,0 +1,57 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "title": {
+        "type": "string"
+      },
+      "dates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "date"
+          ]
+        }
+      },
+      "thumbnail": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "extension": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "extension"
+        ]
+      },
+      "issueNumber": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "id",
+      "title",
+      "dates",
+      "thumbnail",
+      "issueNumber"
+    ]
+  }
+}

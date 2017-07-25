@@ -1,0 +1,8 @@
+.loading {
+  position: fixed;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  z-index: 2;
+}

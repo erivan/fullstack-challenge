@@ -1,0 +1,14 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "comic_id": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "comic_id"
+    ]
+  }
+}
