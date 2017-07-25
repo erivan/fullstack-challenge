@@ -2,7 +2,7 @@
 
 - Fork this repo
 - Look at the specification below and do your thing
-- Open a Pull Request
+- Open a Pull Request (optionaly if you have a problem with doing it in the public domain send the repo in a zip file)
 
 We will review the code and if necessary discuss within the pull request.
 
@@ -12,12 +12,11 @@ We will review the code and if necessary discuss within the pull request.
 
 There's a bug in our current implementation: the upvote is not been saved.
 
-**Excepted:**
-Save upvotes using our current implementation(there's no need to add new features such as user account or per use votes)
+**Importante note:** Save upvotes using our current implementation (there's no need to add new features such as user account or per use votes)
 
 #### New feature:
 
-When clicking on a comic We want to view the comic details: title, issue number, variant description, ISBN, characters, images and creators. It should open an overlay over the current content.
+When clicking on a comic we want to view the comic details: title, issue number, variant description, ISBN, characters, images and creators. It should open an overlay over the current content.
 
 ### Evaluation Criteria
  - Maintainable code
@@ -26,7 +25,7 @@ When clicking on a comic We want to view the comic details: title, issue number,
  - User experience
 
 Feel free to change whatever you think needs to be changed.
-The more detailed, the better.
+The more detail the better.
 
 ### Installation
 #### Backend
