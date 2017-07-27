@@ -10,7 +10,7 @@ We will review the code and if necessary discuss within the pull request.
 
 #### Bugfix:
 
-There's a bug in our current implementation: the upvote is not been saved.
+There's a bug in our current implementation: the upvote is not being saved.
 
 **Importante note:** Save upvotes using our current implementation (there's no need to add new features such as user account or per use votes)
 
