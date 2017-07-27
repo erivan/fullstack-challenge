@@ -1,5 +1,4 @@
 require 'digest'
-require 'pry'
 
 class Api::ComicsController < ApplicationController
   include Roar::Rails::ControllerAdditions
