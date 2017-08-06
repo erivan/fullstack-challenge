@@ -1,4 +1,8 @@
-require 'rails_helper'
+require 'fast_spec_helper'
+require 'active_model'
+require './spec/factories/comic_votes'
+require './app/use_cases/use_case'
+require './app/use_cases/fetch_up_votes'
 
 RSpec.describe FetchUpVotes do
 
@@ -18,14 +22,15 @@ RSpec.describe FetchUpVotes do
 
     context 'When there are comics registered' do
 
-      let(:comic) { build :comic_vote }
+      let(:comic_id) { 12 }
+      let(:comic) { {comic_id: comic_id} }
       let(:result) { [comic] }
 
       it 'should result be a array with 1 comic' do
         expect(fetch_up_votes_instance.result.size).to be 1
       end
-      it 'should includ comic_id in result' do
-        expect(fetch_up_votes_instance.result.as_json).to all (include('comic_id' => comic.comic_id))
+      it 'should include comic_id in result' do
+        expect(fetch_up_votes_instance.result.as_json).to all (include('comic_id' => 12))
       end
 
     end
