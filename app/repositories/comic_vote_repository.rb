@@ -12,6 +12,12 @@ class ComicVoteRepository
     repository.create(comic_id: comic_id, votes: 1)
   end
 
+  def increment_vote(comic_vote)
+    repository.increment_counter(:votes, comic_vote.id)
+    comic_vote.increment!(:votes)
+  end
+
+
   private
 
   attr_reader :repository
