@@ -1,6 +1,5 @@
 require 'fast_spec_helper'
 require 'active_model'
-require './spec/factories/comic_votes'
 require './app/use_cases/use_case'
 require './app/use_cases/fetch_up_votes'
 

@@ -14,9 +14,12 @@ class UpVote
   attr_reader :comic_id
 
   def create_or_increase
-    comic = ComicVote.upvote(comic_id: comic_id)
-    comic.tap do |success|
-      errors.add(:base, 'Vote failed to save') unless success
-    end
+    comic_vote = repo.find_by_comic_id(comic_id)
+    return repo.create_vote_for_comic(comic_id) unless comic_vote.present?
+    repo.increment_vote(comic_vote)
+  end
+
+  def repo
+    @repo ||= ::ComicVoteRepository.new
   end
 end
