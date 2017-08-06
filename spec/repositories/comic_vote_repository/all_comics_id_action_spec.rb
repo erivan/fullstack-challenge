@@ -22,10 +22,10 @@ describe ComicVoteRepository, type: [:repository, :comic_vote] do
         comic_01
       end
 
-      let(:first_result) { result.first }
-      it 'should result all comics id' do
+      it 'should result comcic and comic_01 ' do
+        expect(result.first.as_json).to include('comic_id'=> first_comic_id)
+        expect(result.as_json).to all(include('comic_id'))
         expect(result.count).to be 2
-        expect(first_result.comic_id).to be first_comic_id
       end
 
     end
