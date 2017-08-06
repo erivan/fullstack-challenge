@@ -16,7 +16,9 @@ class ComicVoteRepository
     repository.increment_counter(:votes, comic_vote.id)
   end
 
-  
+  def all_comics_id
+    repository.select(:comic_id)
+  end
 
   private
 
