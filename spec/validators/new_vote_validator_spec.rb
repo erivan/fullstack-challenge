@@ -1,4 +1,6 @@
-require 'rails_helper'
+require 'fast_spec_helper'
+require 'active_model'
+require './app/validators/new_vote_validator'
 
 
 describe NewVoteValidator, type: [:validator, :comic_vote] do
@@ -11,7 +13,7 @@ describe NewVoteValidator, type: [:validator, :comic_vote] do
 
   let(:errors) { subject.errors }
   let(:return_option) {  }
-  let(:repository) { instance_double ComicVoteRepository }
+  let(:repository) { double }
 
   before do
     allow(subject).to receive(:repo).and_return repository
@@ -47,7 +49,7 @@ describe NewVoteValidator, type: [:validator, :comic_vote] do
 
     context 'When params is invalid' do
 
-      let(:return_option) { instance_double ComicVote }
+      let(:return_option) { double }
 
       it 'should add not unique error on :base' do
         expect(errors.added? :base, comic_not_unique_msg).to be_truthy

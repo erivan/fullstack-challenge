@@ -27,6 +27,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
   gem 'sqlite3'
 end
 
@@ -42,6 +43,7 @@ group :test do
   gem 'rack-test', '~> 0.6'
   gem 'vcr', '~> 3.0', '>= 3.0.1'
   gem 'webmock', '~> 1.24', '>= 1.24.2'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
