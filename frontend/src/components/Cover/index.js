@@ -85,7 +85,7 @@ class Cover extends Component {
       return null;
     }
     removeShowingDetail() {
-      // this.showComicDetail(false);
+      this.showComicDetail(false);
       this.showDetails(false);
     }
 
@@ -96,8 +96,9 @@ class Cover extends Component {
           onMouseEnter={ this.showDetails.bind(this, true) }
           onMouseLeave={ this.removeShowingDetail.bind(this) }>
 
-            { this.renderComicDetail() }
           <div className="cover">
+
+            { this.renderComicDetail() }
             <img className="cover-image" alt={ this.props.comicData.title } src={ this.coverImage.call(this) } />
             { this.renderDetail() }
             { this.coverUpvoted() }

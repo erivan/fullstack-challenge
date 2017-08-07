@@ -17,7 +17,7 @@ RSpec.describe Api::ComicsController, type: :controller do
   describe 'GET /comics/:comic_id/fech' do
     before do
       VCR.use_cassette('comic') do
-        get 'fetch', comic_id: 1578, format: :json
+        get 'fetch', params: { comic_id: 1578 } , format: :json
       end
     end
 

@@ -1,18 +1,14 @@
-
 .comic-detail {
-  background-color: #000000;
-  height: auto;
-  position: absolute;
-  left:0;
-  font-size: 12px;
-  color: #e8dada;
-  z-index: 1;
-  text-align: center;
-  opacity: 0.8;
-  min-height: 568px;
+  height: 100%;
   width: 100%;
-  margin-top: 10px;
-  animation: fade-in .45s ease-in-out;
+  background-color: #000000;
+  color: #e8dada;
+  position: absolute;
+  font-size: 12px;
+  z-index: 1;
+  opacity: 0.9;
+  text-align: center;
+  transition: height .54s cubic-bezier(.5,0,.1,1) 0s,opacity .44s cubic-bezier(.5,0,.1,1) .1s
 }
 .comic-informations{
   padding: 5px;
@@ -29,19 +25,3 @@
   font-size: 15px;
 }
 
-@media screen and (min-width: 48em) and (max-width: 64em) {
-  .comic-detail {
-    width: 720px;
-    min-height: 278px;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (min-width: 64em){
-  .comic-detail {
-    width: 920px;
-
-    min-height: 278px;
-    margin: 0 auto;
-  }
-}

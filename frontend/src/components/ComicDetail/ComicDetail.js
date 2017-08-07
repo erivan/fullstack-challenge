@@ -1,6 +1,3 @@
-/* @flow weak */
-
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/index.js';
@@ -14,18 +11,21 @@ class ComicDetail extends Component {
   }
 
 
-  imageSize(width) {
+  imageSize = (width) => {
     return (width < 768) ? 'portrait_uncanny' : 'portrait_fantastic' ;
   }
+
   static propTypes = {
     comicId: React.PropTypes.number.isRequired,
     comic: React.PropTypes.object
   }
+
   getNames = (items) => {
     return items.map((creator) => {
       return creator.name;
     }).join(', ');
   };
+
   componentWillMount() {
     this.props.fetchComic(this.props.comicId);
   }
@@ -34,6 +34,7 @@ class ComicDetail extends Component {
       this.setState({comic: newProps.comic})
     }
   }
+
   getSrc = (image) => {
     return `${image.path}/${this.state.image_size}.${image.extension}`;
   }
@@ -43,44 +44,45 @@ class ComicDetail extends Component {
     return images.map((image) => {
       return <div className={this.getImageClass.call(this, images.length)}>
         <img className="pure-img img-detail" alt={ title } src={ this.getSrc.call(this, image)} />
-        </div>;
+      </div>;
     });
   }
-  renderByCast = (cast) => {
+
+  renderByCast = (cast, label) => {
     if(cast.length === 0) return null;
 
     return <span className="pure-u-5-5">
-      <span className="group-title"> Creators: </span>
+      <span className="group-title"> { label }: </span>
       { this.getNames(cast) }
     </span>
   }
+
   getImageClass = (imageLength) => {
-    if(imageLength === 1) return 'pure-u-1-1 pure-u-lg-1-5';
-    return (imageLength > 8 ) ? 'pure-u-1-4 pure-u-lg-1-8' : 'pure-u-1-2 pure-u-lg-1-8' ;
+    if(imageLength === 1) return 'pure-u-1-1 pure-u-lg-1-1';
+    return (imageLength > 8 ) ? 'pure-u-1-4 pure-u-lg-1-8' : 'pure-u-1-2 pure-u-lg-3-5' ;
   }
-  render(){
-    if(this.state.comic === null) {
-      return null;
-    }
+
+  render() {
+    if(this.state.comic === null) { return null; }
+
     const { title, creators, characters} = this.state.comic;
+
     return(
       <div className="comic-detail">
         <div className="pure-g">
           <div className="pure-u-1-4 pure-u-1-1">
             <div className="comic-informations">
               <span className="pure-u-5-5"> { title }</span>
-              { this.renderByCast(creators.items) }
-              { this.renderByCast(characters.items) }
+              { this.renderByCast(creators.items, 'Creators') }
+              { this.renderByCast(characters.items, 'Characters') }
             </div>
           </div>
 
           <div className="pure-u-1-4 pure-u-1-1">
-                    <div className="images-section">
+            <div className="images-section">
               {this.comicImages.call(this)}
+            </div>
           </div>
-
-        </div>
-
         </div>
       </div>
     );
