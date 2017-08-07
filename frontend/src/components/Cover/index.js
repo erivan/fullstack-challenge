@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import ComicDetail from '../ComicDetail/ComicDetail.js'
 import './Cover.css';
 import _ from 'lodash';
 
-export default class Cover extends Component {
+class Cover extends Component {
     constructor(props) {
       super(props);
-      this.state = { image_size: this.imageSize(window.innerWidth), mouseOver: false }
+      this.state = { image_size: this.imageSize(window.innerWidth), mouseOver: false, comicClick: false, comic: null }
     }
 
     static propTypes = {
       comicData: React.PropTypes.object.isRequired,
+      comic: React.PropTypes.object,
       upVote: React.PropTypes.func.isRequired,
       upVoted: React.PropTypes.bool.isRequired
     }
@@ -69,18 +71,43 @@ export default class Cover extends Component {
     coverImage() {
       return `${this.props.comicData.thumbnail.path}/${this.state.image_size}.${this.props.comicData.thumbnail.extension}`;
     }
+    showComicDetail(show) {
+      if(show) {
+        this.showDetails(false);
+      }
+      this.setState({ comicClick: show })
+    }
+    renderComicDetail() {
+      if (this.state.comicClick){
+        return <ComicDetail comicName="Despacito" comicId={this.props.comicData.id} />
+        }
+
+      return null;
+    }
+    removeShowingDetail() {
+      // this.showComicDetail(false);
+      this.showDetails(false);
+    }
 
     render() {
       return (
         <div className="pure-u-23-24 pure-u-md-1-4 pure-u-lg-1-5"
+          onClick={ this.showComicDetail.bind(this, !this.state.comicClick ) }
           onMouseEnter={ this.showDetails.bind(this, true) }
-          onMouseLeave={ this.showDetails.bind(this, false) }>
+          onMouseLeave={ this.removeShowingDetail.bind(this) }>
+
+            { this.renderComicDetail() }
           <div className="cover">
             <img className="cover-image" alt={ this.props.comicData.title } src={ this.coverImage.call(this) } />
             { this.renderDetail() }
             { this.coverUpvoted() }
           </div>
+
         </div>
       );
     }
 }
+
+
+
+export default Cover;

@@ -2,11 +2,12 @@ import axios from 'axios';
 
 const ROOT_URL = '';
 
-export const FETCH_COVER   = 'FETCH_COVER';
-export const SEARCH_COMIC  = 'SEARCH_COMIC';
-export const LOADING_START = 'LOADING_START';
-export const LOADING_END   = 'LOADING_END';
-export const UPVOTE        = 'UPVOTE';
+export const FETCH_COVER    = 'FETCH_COVER';
+export const SEARCH_COMIC   = 'SEARCH_COMIC';
+export const LOADING_START  = 'LOADING_START';
+export const LOADING_END    = 'LOADING_END';
+export const FETCH_COMIC    = 'FETCH_COMIC';
+export const UPVOTE         = 'UPVOTE';
 export const FETCH_UPVOTES  = 'FETCH_UPVOTES';
 
 export const actions = {
@@ -55,5 +56,16 @@ export const actions = {
       type: SEARCH_COMIC,
       term: term
     };
+  },
+  fetchComic(comicId) {
+    const url = `${ROOT_URL}/api/comics/${comicId}/fetch`;
+        return dispatch => {
+      dispatch({type: LOADING_START });
+      axios.get(url)
+        .then(response => {
+          dispatch({type: LOADING_END });
+          dispatch({type: FETCH_COMIC, payload: response});
+        })
+    }
   }
 }

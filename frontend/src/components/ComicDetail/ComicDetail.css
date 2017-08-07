@@ -1,0 +1,47 @@
+
+.comic-detail {
+  background-color: #000000;
+  height: auto;
+  position: absolute;
+  left:0;
+  font-size: 12px;
+  color: #e8dada;
+  z-index: 1;
+  text-align: center;
+  opacity: 0.8;
+  min-height: 568px;
+  width: 100%;
+  margin-top: 10px;
+  animation: fade-in .45s ease-in-out;
+}
+.comic-informations{
+  padding: 5px;
+  font-weight: bold;
+}
+.images-section {
+  bottom: 8px;
+  padding: 5px;
+  width: 100%;
+}
+
+.group-title {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 48em) and (max-width: 64em) {
+  .comic-detail {
+    width: 720px;
+    min-height: 278px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 64em){
+  .comic-detail {
+    width: 920px;
+
+    min-height: 278px;
+    margin: 0 auto;
+  }
+}
