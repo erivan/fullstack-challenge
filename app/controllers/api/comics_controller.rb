@@ -11,6 +11,13 @@ class Api::ComicsController < ApplicationController
     end
   end
 
+  def fetch
+    comic = FetchComic.perform(fetch_comic_params[:comic_id])
+    if(comic.success?)
+      respond_with comic.result, :represent_with => ComicDetailRepresenter
+    end
+  end
+
   def upvotes
     up_votes = FetchUpVotes.perform
     respond_with up_votes.result, :represent_items_with => UpVotesRepresenter
@@ -33,6 +40,10 @@ class Api::ComicsController < ApplicationController
   end
 
   def up_vote_params
+    params.permit(:comic_id).to_h
+  end
+
+  def fetch_comic_params
     params.permit(:comic_id).to_h
   end
 end

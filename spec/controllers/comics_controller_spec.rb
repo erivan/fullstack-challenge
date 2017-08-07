@@ -14,6 +14,21 @@ RSpec.describe Api::ComicsController, type: :controller do
     specify { expect(response.status).to eq 200 }
   end
 
+  describe 'GET /comics/:comic_id/fech' do
+    before do
+      VCR.use_cassette('comic') do
+        get 'fetch', comic_id: 1578, format: :json
+      end
+    end
+
+    it 'should response to match_response_schema' do
+
+      expect(response).to match_response_schema('comic')
+    end
+
+  end
+
+
   describe 'PUT /comics/:comic_id/upvote' do
 
     before { put :upvote, params: { comic_id: 123 } }
