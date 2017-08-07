@@ -15,8 +15,14 @@ class UpVote
 
   def create_or_increase
     comic_vote = repo.find_by_comic_id(comic_id)
-    return repo.create_vote_for_comic(comic_id) unless comic_vote.present?
+    return create_vote unless comic_vote.present?
     repo.increment_vote(comic_vote)
+  end
+
+  def create_vote
+    validator = NewVoteValidator.new({comic_id: comic_id})
+    return repo.create_vote_for_comic(comic_id) if validator.valid?
+    errors.add(:base, validator.errors.full_messages)
   end
 
   def repo

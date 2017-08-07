@@ -1,5 +1,6 @@
 require 'fast_spec_helper'
 require 'active_model'
+require './app/validators/new_vote_validator'
 require './app/use_cases/use_case'
 require './app/use_cases/up_vote'
 
@@ -11,10 +12,14 @@ RSpec.describe UpVote do
   let(:up_vote_instance) { UpVote.new(comic_id) }
   let(:setup)            { }
   let(:comic_id)         { }
+  let(:validator)        { double }
+  let(:validator_result) { true }
 
   before do
     allow(UpVote).to receive(:new).and_return up_vote_instance
     allow(up_vote_instance).to receive(:repo).and_return repository
+    allow(NewVoteValidator).to receive(:new).and_return validator
+    allow(validator).to receive(:valid?).and_return validator_result
     setup
     up_vote_instance.perform
   end
@@ -46,5 +51,20 @@ RSpec.describe UpVote do
       expect(repository).to have_received(:find_by_comic_id).with(comic_id).once
       expect(repository).to have_received(:increment_vote).with(comic).once
     end
+  end
+
+  context 'When given a invalid comic id' do
+    let(:comic_id) { nil }
+    let(:validator_result) { false }
+    let(:errors) { double(full_messages: 'Invalid Comic') }
+    let(:setup) do
+      allow(repository).to receive(:find_by_comic_id).and_return nil
+      allow(validator).to receive(:errors).and_return errors
+    end
+
+    it 'should up_vote_instance contains errors' do
+      expect(up_vote_instance.errors).to_not be_nil
+    end
+
   end
 end
